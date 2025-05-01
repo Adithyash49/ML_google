@@ -1,0 +1,56 @@
+Date 01.05.2025
+
+Machine learning: It is a process to train the model to predict or generate content.
+
+ML types:
+Supervised: data is labeled. Regression (predict a number) and classification (predict category (binary, multiclass))
+Unsupervised : data is unlabeled (Model should infer its own rules). Clustering, Dimensionality reduction.
+Reinforcement: predicts by getting rewards or penalty based on action performed. Generates a policy that defines the best strategy. Gaming
+Generative AI: creates a content from user input (LLM, Image generators, Music generator)
+
+Supervised learning:
+Data: words, numbers,waveforms (images, audiofiles); Dataset -Size and diverse
+Input-Features, Output-Labels
+Model: Is a mathematical relationship (inputs and outputs) derived from data and ML system uses to make prediction.
+Training: train the model with labeled set
+Evaluating:After we've trained a model, we evaluate it by using a dataset with labeled examples and compare the model's predicted value to the label's actual value.
+Inference: Apply to the real world input.
+
+ML_models
+
+Linear regression: Technique used to find relationship between variables.(inputs and outputs)
+y = mx + b; In ML, m and b are called weight and bias-- calculated during training.
+
+Loss: Numerical metric that describes how wrong a model's predictions are.
+Types: L1, MAE, L2, MSE
+MAE:Model is closer to data points than other outliers.
+MSE:Model is closer to outliers than other data points
+
+Outliers: How far off a model's predictions are from real values.
+
+Gradient descent: Mathematical technique that iteratively finds weights and bias that produce the model with lowest loss.
+New weight= old weight-(small amount * weight slope)
+New bias = old bias -(small amount * bias slope)
+
+Graph: loss functions for linear models always produce a convex surface.
+
+Hyperparameters:variables that control training: Learning rate, Epoch, Batch size
+Parameters: like bias and weight , are calculated by model.
+
+Learning rate: which influences how quickly the model converges.--depends on problem ; If learning rate too high --model does not converge
+
+Batch size: refers to number of examples that model processes before updating its weight and loss.
+Two techniques: 
+Stochastic  gradient: takes one example per iteration, so noise is included
+Mini batch stochastic gradient: taken as small chunk and then do iteration.
+
+Epoch: model has processed every sample in the training at once.example 1000 samples, 100 batch, --10 iterations, therefore 1epoch
+
+Model set up
+1.) Load required modules
+2.) Dataset exploration
+3.) Train model
+4.) Validate model
+
+
+

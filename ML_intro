@@ -29,8 +29,8 @@ MSE:Model is closer to outliers than other data points
 Outliers: How far off a model's predictions are from real values.
 
 Gradient descent: Mathematical technique that iteratively finds weights and bias that produce the model with lowest loss.
-New weight= old weight-(small amount * weight slope)
-New bias = old bias -(small amount * bias slope)
+New weight= old weight-(small amount * weight slope); dL/dW
+New bias = old bias -(small amount * bias slope); dL/dB
 
 Graph: loss functions for linear models always produce a convex surface.
 
@@ -51,6 +51,69 @@ Model set up
 2.) Dataset exploration
 3.) Train model
 4.) Validate model
+
+
+Logistic regression
+
+Many problems require probability estimate as output. Logistic regression is an efficient mechanism.
+Probability can be applied in two ways: Applied "as is" and Convert to binary category
+
+Standard logistic function: Sigmoid fucntion; f(x)= (1/ (1+e^-x))
+
+Logistic regression uses log loss (returns the logarithm of magnitude of change rather than distance from data to prediction) instead of square loss
+Apply regularization to prevent overfitting. Regularization, a mechanism for penalizing model complexity during training.
+
+
+
+Classification - task of predicting which of a set of classes (categories) an example belong to.
+Converting a logistic regression model that predicts a probability into binary/multi classifcation model that predicts on eof the two classes.
+
+Threshold and confusion matrix
+
+Threshold set based on business purpose.
+
+Confusion matrix
+
+Rows (predicted postive and predicted negative)
+Columns ( Actual positive and actual negative)
+
+
+If threshold increases, then TP, FP will decrease and TN and FN increase.
+
+Evaluation matrix
+
+Evaluation metrics are most meaningful depends on the specific model and the specific task, 
+the cost of different misclassifications, and whether the dataset is balanced or imbalanced.
+
+Accuracy : proportion of all classifications that were correct, whether positive or negative.
+= correct classifications / total classifications = TP + TN /(TP+TN+FP+FN)
+
+Recall (Probability of detection);True positive rate = TP / (TP +FN) ; Use when FN is expensive than FP
+
+False positive rate = FP / (FP +TN) -- probability of false alarm
+
+
+Precision - model's positive classifications that are actually positive; 
+Use when it's very important for positive predictions to be accurate.
+
+TP/ (TP+FP)
+
+F1 score (Harmonic mean; avg of precision and recall)
+
+F1 = 2 (p * r / (p+r))
+
+When you want to see different threshold values and the performance on model we will use
+
+Receiver-operating charactersitic curve (ROC) : Graph of TPR and FPR
+Area under the curve (AUC) : The area under the ROC curve (AUC) represents the probability that the model, 
+if given a randomly chosen positive and negative example, will rank the positive higher than the negative
+
+AUC is a useful measure for comparing the performance of two different models, as long as the dataset is roughly balanced.
+
+Precision and Recall curve if the data set are imbalanced.
+
+Prediction bias: may be caused by insufficient feature training, bugs, model oversimplified, biased sampling
+
 
 
 

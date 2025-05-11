@@ -1,1 +1,22 @@
+Working with numerical data
+
+ML practitioners spend far more time evaluating, cleaning, and transforming data than building models.
+
+You must determine the best way to represent raw dataset values as trainable values in the feature vector. This process is called feature engineering
+
+The most common feature engineering techniques are:
+
+Normalization: Converting numerical values into a standard range.
+Binning (also referred to as bucketing): Converting numerical values into buckets of ranges.
+
+Numerical data : Step 1
+Visualization, statistics
+
+step 2: three popular normalization methods: better predictions, converge fast, Helps the model learn appropriate weights for each feature.
+
+linear scaling:  (more commonly shortened to just scaling) means converting floating-point values from their natural range into a standard range—usually 0 to 1 or -1 to +1.
+Z-score scaling: A Z-score is the number of standard deviations a value is from the mean. A Z-score is the number of standard deviations a value is from the mean. 
+log scaling: Log scaling changes the distribution, which helps train a model that will make better predictions.Log scaling computes the logarithm of the raw value.
+
+
 

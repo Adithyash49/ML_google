@@ -33,3 +33,50 @@ Problems: Omitted values, Duplicated examples, Out-of-range feature values, Bad 
 
 Polynomial transforms
 
+Working with categorical data
+
+Categorical data has a specific set of possible values. Numbers can also be categorical data(postal data).
+Categorical data tends to produce high-dimensional feature vectors; that is, feature vectors having a large number of elements. 
+High dimensionality increases training costs and makes training more difficult. 
+
+Encoding
+
+Encoding means converting categorical or other data to numerical vectors that a model can train on. This conversion is necessary because models can only train on floating-point values
+
+Vocadbulary: The term dimension is a synonym for the number of elements in a feature vector.With a vocabulary encoding, the model treats each possible categorical value as a separate feature
+Machine learning models can only manipulate floating-point numbers. Therefore, you must convert each string to a unique index number.
+
+One-hot encoding: next step in building a vocabulary is to convert each index number to its one-hot encoding. 
+Each category is represented by a vector (array) of N elements, where N is the number of categories.Exactly one of the elements 
+in a one-hot vector has the value 1.0; all the remaining elements have the value 0.0.
+
+It is the one-hot vector, not the string or the index number, that gets passed to the feature vector. 
+The model learns a separate weight for each element of the feature vector.
+
+If the features has high number of categories like postal code, words in english, last_names in country, then one hot vector is bad choice. 
+So embeddings are preferred.
+It reduces the dimensions and model runs quickly and infer predictions.
+
+Hashing (also called the hashing trick) is a less common way to reduce the number of dimensions.
+
+Categorical data: Common issues
+Categorical data, on the other hand, is often categorized by human beings or by machine learning (ML) models
+
+Any two human beings(gold labels) may label the same example differently. The difference between human raters' decisions is called inter-rater agreement.
+To measure Inter rater agreement: Cohens kappa and variants, Intra class correlation, Krippendorff's alpha
+
+Machine-labeled data, where categories are automatically determined by one or more classification models, is often referred to as silver labels
+
+Feature cross: 
+Feature crosses are created by crossing (taking the Cartesian product of) two or more categorical or bucketed features of the dataset
+For any given example in the dataset, the feature cross will equal 1 only if both base features' original one-hot vectors were 1 for the crossed categories.
+This dataset could be used to classify X(leaf) by Y(species) s, since these characteristics do not vary within a Y.
+
+
+
+
+
+
+
+
+

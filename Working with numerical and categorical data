@@ -74,10 +74,15 @@ This dataset could be used to classify X(leaf) by Y(species) s, since these char
 
 
 
+Datasets, generalization and overfitting
 
+A dataset is a collection of examples.
 
+Types of data: numerical, categorical, images, video, audio files, embeddings, documents
 
+Following are common causes of unreliable data in datasets:Omitted values, duplicated values, bad feature values, bad labels, 
 
+Imputation is the process of generating well-reasoned data, not random or deceptive data.
 
 
 

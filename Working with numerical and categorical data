@@ -83,7 +83,29 @@ Types of data: numerical, categorical, images, video, audio files, embeddings, d
 Following are common causes of unreliable data in datasets:Omitted values, duplicated values, bad feature values, bad labels, 
 
 Imputation is the process of generating well-reasoned data, not random or deceptive data.
+A sorted dataset, like the one in the following exercise, can sometimes simplify imputation. However, it is a bad idea to train on a sorted dataset. 
+So, after imputation, randomize the order of examples in the training set.
 
+Data labels: Direct and proxy labels
+
+Datasets: Balanced and imbalanced
+
+To overcome Imbalanced datasets following techniques are available : Downsampling and Upweighting
+
+Datasets: Dividing the original dataset
+
+Trainset, Validation set , testset
+
+A validation set performs the initial testing on the model as it is being trained.
+Use the validation set to evaluate results from the training set. After repeated use of 
+the validation set suggests that your model is making good predictions, use the test set to double-check your model.
+
+In summary, a good test set or validation set meets all of the following criteria:
+
+Large enough to yield statistically significant testing results.
+Representative of the dataset as a whole. In other words, don't pick a test set with different characteristics than the training set.
+Representative of the real-world data that the model will encounter as part of its business purpose.
+Zero examples duplicated in the training set.
 
 
 

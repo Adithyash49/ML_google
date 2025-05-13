@@ -107,5 +107,25 @@ Representative of the dataset as a whole. In other words, don't pick a test set 
 Representative of the real-world data that the model will encounter as part of its business purpose.
 Zero examples duplicated in the training set.
 
+Datasets: Transofrming: Machine learning models can train on floating point values. So transform the features  via categorical or numerical method 
+
+Overfitting means creating a model that matches (memorizes) the training set so closely that the model fails to make correct predictions on new data.
+Generalization: Generalization is the opposite of overfitting. That is, a model that generalizes well makes good predictions on new data. Your goal is to create a model that generalizes well to new data.
+
+Detecting overfitting: Loss curves and geenralization curves.
+A loss curve plots a model's loss against the number of training iterations. 
+A graph that shows two or more loss curves is called a generalization curve. 
+
+To make statistically significant --train, test, validation--Shuffle the examples in the dataset extensively before partitioning them.
+
+Regularization: 
+
+One approach to keeping a model simple is to penalize complex models; that is, to force the model to become simpler during training. Penalizing complex models is one form of regularization.
+
+As you've seen, models focused solely on minimizing loss tend to overfit. 
+A better training optimization algorithm minimizes some combination of loss and complexity: minimize (loss + complexity)
+
+
+
 
 

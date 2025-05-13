@@ -126,6 +126,7 @@ As you've seen, models focused solely on minimizing loss tend to overfit.
 A better training optimization algorithm minimizes some combination of loss and complexity: minimize (loss + complexity)
 
 
+Regularization rate: Early stopping, Equilibrium between learning rate and regularization rate
 
 
 

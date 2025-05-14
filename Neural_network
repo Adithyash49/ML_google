@@ -56,6 +56,7 @@ An embedding layer translates the one-hot encoding into the three-dimensional em
 Contextual embeddings: Contextual embeddings allow a word to be represented by multiple embeddings that incorporate information about the surrounding words as well as the word itself. 
 BERT, ELMo, GPT, Tranformer.
 
-
+Embeddings = Understanding words
+Model = Making decisions based on that understanding
 
 

@@ -60,3 +60,42 @@ Embeddings = Understanding words
 Model = Making decisions based on that understanding
 
 
+LLM
+
+A language model estimates the probability of a token or sequence of tokens occurring within a longer sequence of tokens. 
+A token could be a word, a subword (a subset of a word), or even a single character.
+
+An application can use the probability table to make predictions.
+
+Estimating the probability of what fills in the blank in a text sequence can be extended to more complex tasks, including:
+
+Generating text.
+Translating text from one language to another.
+Summarizing documents.
+
+N-grams are ordered sequences of words used to build language models, where N is the number of words in the sequence.
+
+Recurrent neural networks provide more context than N-grams. 
+A recurrent neural network is a type of neural network that trains on a sequence of tokens. 
+
+LLMs make much better predictions than N-gram language models or recurrent neural networks because:
+
+LLMs contain far more parameters than recurrent models.
+LLMs gather far more context.
+
+Transformers are the state-of-the-art architecture for a wide variety of language model applications, such as translation:
+
+Full transformers consist of an encoder and a decoder:
+
+An encoder converts input text into an intermediate representation. An encoder is an enormous neural net.
+A decoder converts that intermediate representation into useful text. A decoder is also an enormous neural net.
+
+Transformers rely heavily on a concept called self-attention.The "self" in "self-attention" refers to the input sequence. 
+
+After all, predicting a word or two is essentially the autocomplete feature built into various text, email, and authoring software. 
+You might be wondering how LLMs can generate sentences or paragraphs or haikus about arbitrage.
+
+LLMs: Fine-tuning, distillation, and prompt engineering
+
+
+

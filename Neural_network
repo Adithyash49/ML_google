@@ -1,1 +1,35 @@
 
+Neural Network
+
+Neural networks are a family of model architectures designed to find nonlinear patterns in data. 
+During training of a neural network, the model automatically learns the optimal feature crosses to perform on the input data to minimize loss.
+
+Activation fucntions: ReLu, sigmoid, tanh
+Activation fucntions: enables neural networks to learn nonlinear relationships between features and the label.
+
+In training a neural network:
+Gradient descent finds the weights by minimizing the total loss.
+Regularization changes the loss function by adding a penalty term, so gradient descent prefers simpler models.
+
+Best practices for neural network training:
+Vanishing gradient--ReLu
+Exploding gradient-lowering learn rate, batch normalization
+Dead ReLu units--LeakyReLu
+Dropout regularization
+
+Training using backpropagation
+
+Multiclass classification
+
+Two main variants: One vs all; one vs one (softmax)
+
+One vs all: One-vs.-all provides a way to use binary classification for a series of yes or no predictions across multiple possible labels. sum of probability >1; as probability is determined independently of all other data sets.
+One vs one: For one-vs.-one, we can instead apply a function called softmax, which assigns decimal probabilities to each class in a multi-class problem such that all probabilities add up to 1.0.
+
+One vs all: Sigmoid; one vs one (Softmax)
+
+Softmax assumes that each example is a member of exactly one class. Some examples, however, can simultaneously be a member of multiple classes. For such examples:
+You may not use softmax.
+You must rely on multiple logistic regressions.
+
+

@@ -32,4 +32,30 @@ Softmax assumes that each example is a member of exactly one class. Some example
 You may not use softmax.
 You must rely on multiple logistic regressions.
 
+Embeddings
+
+Encoding:  Encoding refers to the process of choosing an initial numerical representation of data to train the model on.
+Problems: Number of data points, amount of computation, amount of memory, number of weights,
+Solution: how to create embeddings, lower-dimensional representations of sparse data, that address these issues.
+
+Embedding: An embedding is a vector representation of data in embedding space.
+
+Embeddings will usually be specific to the task, and differ from each other when the task differs.
+Embeddings are vectors that represent real-world objects like text, images and audio as points in continuous vector space.
+It turns out that embeddings based on semantic similarity work well for many general language.
+
+Word2vec: Technique fro creating vector representation of words.
+
+Embeddings: Obtaining embeddings
+
+Dimensionality reduction techniques
+PCA: PCA tries to find highly correlated dimensions that can be collapsed into a single dimension.
+
+An embedding layer translates the one-hot encoding into the three-dimensional embedding vector [2.98, -0.75, 0].
+
+Contextual embeddings: Contextual embeddings allow a word to be represented by multiple embeddings that incorporate information about the surrounding words as well as the word itself. 
+BERT, ELMo, GPT, Tranformer.
+
+
+
 

@@ -1,1 +1,182 @@
+ML-based solutions are being increasingly used for predictive equipment maintenance, product quality assurance, process monitoring, fault diagnosis, process 
+control, and process optimization, becoming integral part of life. Machine learning will continue to play significant role in unleashing the next wave of
+productivity improvements in process industry. This practice of learning about systems from data or machine learning has become an indispensable tool in process operations in the age of
+increasing global competition and stricter product quality standards. 
+
+Process systems refer to a collection of physical structures that convert raw materials (wood, natural gas, crude oil, coal, etc.) into final consumer products (paper, fertilizers, diesel, energy,
+etc.) or intermediate products which are then used to manufacture other commodity materials.Process industry is a broad
+category that encompasses, amongst others, chemical industry, bioprocess industry, power industry, pharmaceuticals industry, steel industry, semiconductor industry, and waste
+management industry.
+
+In process industry, the task of optimizing production efficiency, controlling product quality, monitoring the process are categorized as process systems engineering (PSE) activities.
+These tasks often require a mathematical model of the plant. The traditional practice has been to use first principles mathematical description of physio-chemical phenomena occurring 
+inside each process unit to mathematically characterize the whole plant. However, as you may already know, building such fundamental models are time-consuming and difficult for
+complex systems. Machine learning (ML)-based methods provide a convenient alternative where process data are used to build empirical plant model which can be used for
+optimization, control, and monitoring purposes.
+
+Characteristics of Process data
+
+Industrial process data often exhibit characteristics which pose challenges to a process data scientist. Dyanamic, time-varying, batch vs continuous, multimode, discrete, non linear, high dimensionality.
+
+What is ML?
+At its core, machine learning simply means using computer programs and data for finding relationship between different components of a system and discovering patterns that were not immediately evident.
+Domain expertise often helps to decide which ML algorithm to use and proper infusion of domain knowledge into ML methodology can sometimes increase model accuracy considerably.
+
+Types of ML: 
+Supervised: PCA, PLS, SVM, SVR, ANN, K-NN, LDA, Lasso, Ridge, Elastic, Decision Tree, Random forest. Application: Soft/virtual sensors, Predictive maintenance, Fault classification/diagnosis, process control, process monitoring
+Unsupervised: PCA, Gaussian mixture model, DBSCAN, Kernel density estimation, K-means, SVDD, self organising map. Application: Dimensionality reduction,, Data visualization, denisty estimation, clustering, outlier detection
+Reinforcement: 
+
+Decision hierarchy levels in process plant:
+Planning and logistics (weeks-months)
+Production scheduling
+Process diagnosis and supervision
+Multivariable and constraint control, 
+regulatory and primary control (seconds-minutes).
+
+Partial least squares (PLS), principal component regression (PCR), support vector regression (SVR) are some of the popular ML method choices for estimating process quality variables.
+
+Process industry is witnessing higher and higher product demands due to increasing population and growing lifestyle globally, but there is also a push to run production facilities
+more efficiently and sustainably. Consequently, adoption of Industry 4.0, which mandates utilizing process data for process improvements all along the production chain, is on the rise.
+
+Machine Learning Model Development:
+
+Data pre-processing: Data cleaning-de-noising, variable selection, outlier handling, missing data handling; Data transformation - centering and scaling, Feature extraction, Feature engineering
+Model training
+Model evaluation - Evaluation metric selection, Cross validation, Residual analysis (model generalization)
+Model tuning: Validation curvem regularization, K-fold CV (model hypertuning)
+
+Automated feature engineering (AFE)00active research area in ML.
+
+Workflow automation via pipelines; 
+
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LinearRegression
+
+Model Evaluation
+
+Regression: MSE, MAE, RMSE, R2 ( R2measures how much of variability in the output variable can be explained by the model.)
+
+Classification: Confusion matrix, Accuracy, Precision, Recall, F1 score, TPR, FPR
+
+Holdout method / Cross-validation : K-fold; 
+Residual analysis (Residual analysis is another way to validate the adequacy of (regression) models. It involves checking the model errors / residuals to ensure there are no undesired patterns in them.)
+
+residual analysis is a powerful diagnostic tool. As a best practice, you should always check the residual plots to ensure no modeling assumptions have been violated or no
+obvious room for improvement exists.
+
+Model tuning (Hyperparameters)
+Therefore, overfitting is characterized by small fitting errors and large validation errors. The sweet spot where the both
+fitting and validation errors are small, and validation errors just start increasing corresponds to the optimal hyperparameters.
+
+If you want to utilize all your training data for model fitting or validation subset cannot be set aside for model selection (e.g., when using gaussian mixture models), 
+BIC or AIC technique can be used which provides an optimal trade-off between model complexity (or number of model parameters) and model accuracy.
+
+Regularization: Lasso(L1), Ridge(L2)
+
+Hyperparameter optimization via GridSearchCV
+Previously we used validation curves to find the optimal hyperparameters. Sklearn provides a GridSearchCV utility function that we can leverage to do this task more conveniently.
+GridSearchCV takes lists of potential hyperparameter values and does an exhaustive search to find the optimal combination of hyperparameter values. The code below shows the
+implementation.
+
+
+Data Pre-processing: Cleaning Process Data
+
+Two common ways to de-noise process signals is to smooth them using moving window averages and Savitzky-Golay (SG) filtering.
+
+Variable/Feature selection: 
+
+Filter methods: Linear correlation (Pearson coefficient) and Mutual information
+Wrapper methods: Recursive feature elimination (PLS) and sequential feature selection
+Embedded methods: LASSO and Decision tree and random forest.(Embedded methods make use of algorithms where selection of variables is an inherent part
+of the model fitting process itself.)
+
+Outlier handling
+
+Univariate method: 2 sigma rule, Hampel identifier
+Multivariate methods: Mahalanobis distance, Minimum covariance determinant (MCD) estimator, PCA
+Data-mining methods: KDE, GMM, K-means, LOF
+
+Mahalanobis distance (MD) is a classical multivariate distance measure that takes into account the covariance/shape of data distribution for computing distances from the center of data.
+
+PCA
+
+Time-series or dynamic dataset require different approaches for outlier detection. A common practice is to first model the given dataset using an
+appropriate time-series modeling technique such as ARIMA or ARX and compute residuals between model prediction and given data.
+
+Dimension Reduction and Latent Variable Methods
+
+Latent variable-based methods reduce process dimensionality by finding these hidden latent variables.
+PCA : converts the original (x,y,z) space into a 2-D principal component (PC) space where the 1st PC (PC1) corresponds to the direction of maximum spread/variance in data and the 2nd PC
+(PC2) corresponds to the direction with highest variance among all directions orthogonal to 1st PC. 
+
+PCA is also frequently utilized for process visualization. For many applications, two or three PCs are adequate for capturing most of the variability in process data and
+therefore, the compressed process data can be visualized with a single plot. Plant operators and engineers use this single plot to find past and current patterns in process data.
+
+Process monitoring/fault detection indices
+Hotelling’s T2 and SPE (also called Q) statistics are the two monitoring indices utilized for process monitoring. 
+
+The T2 and Q indexes quantify different kinds of variations in data. While T2 is a measure of distance from origin in PC space, Q is a measure of the portion of data that is not explained
+by the PCA model.
+
+Variants of Classical PCA
+
+Dynamic PCA (DPCA), Multiway PCA, Kernel PCA (Kernalized methods have become very attractive for dealing with nonlinear data while retaining the simplicity of their linear counterparts.
+
+PLS : Partial least squares (PLS) is a supervised multivariate regression technique that estimates linear relationship between a set of input variables and a set of output variables. Like PCA,
+PLS transforms raw data into latent components - input (X) and output (Y) data matrices are transformed into score matrices T and U, respectively. Figure 2.13 provides a conceptual
+comparison of PLS methodology with those of other popular linear regression techniques, principal component regression (PCR) and multivariate linear regression (MLR)
+
+
+A good rule of thumb when developing soft sensors is to always choose a model with lowest complexity if multiple models with similar predictive
+accuracies are available. For PLS and PCR, higher number of latent components imply higher complexity.
+
+
+Variants of Classical PLS
+
+Dynamic PLS, Kernel PCS
+
+Independent Component Analysis (ICA) is a multivariate technique for transforming measured
+variables into statistically independent latent variables in a lower-dimensional space.
+
+
+ICA and PCA 
+
+IC'a are independent and uncorrelated, non-gaussian, use high order statistics PC's are uncorrelated, gaussian, use second-order statistics, captured variance.
+
+Fisher Discriminant Analysis (FDA), also called linear discriminant analysis (LDA), is a multivariate dimensionality reduction technique which maximizes the ‘separation’ in the lower
+dimensional space between data belonging to different classes.
+
+This observation was expected because PCA, while determining the projection directions, does not consider information about different data
+classes. Therefore, if your intention is to reduce dimensionality for subsequent data classification and training data is labeled into different classes, then FDA is more suitable.Due to the powerful data discrimination ability of FDA, it is widely used in process industry for
+operating mode classification and fault diagnosis. While FDA is a powerful tool for fault diagnosis, it can also be used for fault detection by including data from ‘no-fault’ or normal plant operation as a separate class.
+
+Fault detection refers to the task of determining whether abnormal process conditions have occurred.
+Fault identification and fault isolation, both refer to the task of identifying the process variables that exhibit abnormal behavior. Identifying these variables can help in determining the root-cause of the fault. The step of ‘fault diagnosis’ in the PCA
+chapter should have been called ‘fault identification’.
+
+Support Vector Machines & Kernel-based Learning
+
+SVM (support vector machine) is one such algorithm which excels in dealing with high-dimensional, nonlinear, and small or medium-sized data. SVMs, by design, minimize
+overfitting to provide excellent generalization performance.  SVMs have been employed for fault classification, process monitoring, outlier detection, soft sensing, etc.
+
+SVMs: An Introduction: The classical SVM is a supervised linear technique for solving binary classification problems. 
+Hard and soft class classification (Slack variables).
+
+C as regularization hyperparameter
+The slack variables not only help find a solution in the presence of gross impurity, but they also help to avoid overfitting noisy data. 
+ Trade-off between margin maximization and training accuracy. The hyperparameter C is the knob to control the trade-off. A large value of C implies heavy
+penalization of the constraint violations which will prevent misclassifications, while small value of C allows more misclassifications during model fitting for better margin.
+
+The Kernel Trick for Nonlinear Data
+
+
+
+
+
+
+
+
 

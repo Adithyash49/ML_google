@@ -172,11 +172,34 @@ penalization of the constraint violations which will prevent misclassifications,
 
 The Kernel Trick for Nonlinear Data
 
+These kernel functions allow us to obtain powerful nonlinear classifiers while retaining all the
+benefits of the original linear SVM method.
+
+Table below lists some commonly used kernel functions. The first one is simply the familiar
+dot product of two vectors, while the 2nd one, RBF (radial basis function) or gaussian kernel
+is the most popular (and usually the default choice) kernel for nonlinear problems.
+
+You will notice that Sklearn uses the hyperparameter gamma which is simply 1/2𝜎2
+
+Kernels provide an indirect measure of similarity between any two points in the high-dimensional space.
 
 
+Support vector data description (SVDD) is the unsupervised form of SVM algorithm used for dealing with problems where training samples belong to only one class and the model
+objective is to determine if any test/new sample belongs to the same class of data or not.
 
+now you are convinced of the powerful capabilities of SVM for discriminating between different classes of data and compact bounding of normal operational data. A big
+requirement for successful application of SVM is that the training dataset should be very representative of the ‘normal’ dataset and fully characterize all the expected variations.
 
+Support vector regression (SVR) is another variant of SVM used for linear and nonlinear regressions. SVR attempts to find a regression curve that is as close as possible to the training
+observations. Geometrically, as shown in Figure 7.11 for kernelized-SVR, a tube of pre- specified width (𝜀) is fitted to the data and any sample lying outside the tube is penalized. You
+will see later that SVR’s optimization program is designed to obtain a good balance between model generalization capabilities and the ability to fit the training data.
 
+SVR has been found to provide performance superior to ANNs for small and medium-sized high-dimensional datasets
 
+SVR and ANN
+
+SVMs are in a league of their own and are well-suited for industrial processes with difficult to estimate process parameters. With
+elegant mathematical background, just a few hyperparameters, excellent generalization capabilities, and guaranteed unique global optimum, SVMs are among the best ML
+algorithms.
 
 

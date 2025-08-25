@@ -1,1 +1,210 @@
+Decision trees
+Decision trees (DTs) are inductive learning methods which derive explicit rules from data to make predictions. 
+DTs become the model of choice for applications where ease of rationalization of model results is very important. A popular DT training algorithm called CART (classification and regression trees).
+
+Metrics: Impurity and Gini
+
+While DTs appear to be very flexible and useful modeling mechanism, they are seldom used as a standalone model. In Figure 9.2, we saw that DTs can easily overfit and give non-
+smooth or piece-wise constant approximations. Another disadvantage with DTs is instability, i.e., small variations in training dataset can result in a very different tree. However, there is a
+reason why we invested time in learning DTs. A single tree may not be useful, but when you combine multiple trees, you get amazing results. 
+
+Random forest (RF) is a supervised nonlinear regression and classification modeling technique that is made up of several decision trees. These DTs are fit independently to their
+training datasets and RF’s predictions are made by averaging the predictions of the trees.
+
+In random forest, the trees are grown to full extent, and therefore, hyperparameter selection for the trees is not a concern. This makes RF’s training and execution simple and quick. Infact
+RFs have very small number of tunable hyperparameters. RFs also lend themselves useful for computation of variable importances. All these qualities have led to the popularity of
+random forests.
+
+How to split? Using different training datasets for each tree,  Using random subsets of input variables to find the optimal split: 
+Do note that RF primarily brings down the variance (compared to using single DT models) and not the bias. Therefore, if DT
+itself is underfitting the RF won’t be able to provide high accuracy (or low bias). This is why full-grown trees are used in RF.
+
+Two noteworthy mentions here. First, we didn’t scale the variables before fitting. It’s not a mistake! RFs (and DTs) are one of the rare ML methods whose solutions are invariant to data-
+scaling.
+
+OOB accuracy
+
+Ensemble learning: The idea of combining multiple ‘not so good’/weak models to generate a strong model is not
+restricted to random forests. The idea is more generic and is called ensemble learning. Specific methods that implement the idea (like RFs) are called ensemble methods. 
+
+Strategies in ensemble learning: Modify training datasets(Bagging, Boosting(Adaboost, Gradient boost), RF), choosing different features, modifying hyperparameters.
+
+Sklearn provides GradientBoostingClassifier and GradientBoostingRegressor classes for regression and classification problems, respectively. XGBoost. It stands for eXtreme Gradient Boosting.
+
+Other ML techniques:
+
+we will study two popular non-parametric techniques, namely, KDE and kNN. These methods are conceptually and mathematically
+simple but have proven to be very useful in practice. While KDE allows us to compute probability density functions using process data, kNN facilitates characterizing new data
+sample using (geometrically) neighboring samples. You might recollect that KDE was often mentioned in the earlier chapters as the technique of choice to estimate monitoring metrics
+thresholds for complex process systems; we will see how to do that in this chapter. In multivariate settings, KDE is also employed for outlier detection.
+
+Use smart combinations of ML (PLS with PCA or ANN with PLs).
+
+Kernel density function : Kernel density estimation (KDE) is a technique to estimate (probability) density of a variable
+or joint probability density of a group of variables from data without any prior knowledge about the form of the underlying distribution. 
+KDE density curve is superimposed on the histogram built using observed data. As is evident, KDE is a robust way of estimating probability densities. Using the KDE curve, we can estimate
+the likelihood of new variable measurement falling in any specified range.
+
+To see one of the utilities of KDE, recollect the two ways we have employed to estimate the threshold of a process monitoring metric till now. We computed the percentile of either the
+samples (for ICA) or an assumed distribution (such as a F distribution for PCA T2 metric). While the first approach is inappropriate when number of samples is low, the second approach
+is impractical for complex systems (or systems where process variables do not follow gaussian distribution) where the metric distribution is not known beforehand. In these
+scenarios, KDE can be employed for control limit estimation.
+
+Parametric vs non-parametric is an important machine learning classification. Parametric methods assume a fixed form of the
+underlying model where only the model parameters are estimated using data; non-parametric methods do not make any such assumptions. A
+parametric approach for density estimation would be to assume a gaussian density function and then estimate mean and standard deviation from data.
+Other popular non-parametric methods that you have already studied are KDE, KNN ,decision trees and SVMs.
+
+The bandwidth, however, is a crucial parameter and should be chosen carefully. Too small bandwidth leads to spikes in density estimates due to overfitting; absence or presence of a
+single data-point can significantly impact the density estimate resulting in high variance. Too large bandwidth over-smooths the density curve potentially masking the critical structure in
+data; the discrepancy between the true and estimated density becomes large resulting in high bias.
+
+ GridSearchCV returns an optimal KDE that correctly reflects the distribution of the underlying data without overfitting the spurious details.
+
+KNN
+The k-nearest neighbor (kNN) is a versatile technique based on a simple intuitive idea that the label/value for a new sample can be obtained from the labels/values of closest neighboring
+samples (in the feature space) from the training dataset. The parameter k denotes the number of neighboring samples utilized by the algorithm. As shown in Figure 10.7, kNN can be used
+for both classification and regression. For classification, kNN assigns test sample to the class that appears the most amongst the k neighbors. For regression, the predicted output is the
+average of the value of the k neighbors. Due to its simplicity, kNN is widely used for pattern classification and was included in the list of top 10 algorithms in data mining.
+
+kNN belongs to the class of lazy learners where models are not built explicitly until test samples are received. At the other end of the spectrum, eager
+learners (like, SVM, decision trees, ANN) ‘learn’ explicit models from training samples. Unsurprisingly, training is slower, and testing is faster for eager
+learners. kNN requires computing the distance of the test sample from all the training samples, therefore, kNN also falls under the classification of instance-
+based learning. Instance-based learners make predictions by comparing the test sample with training instances stored in memory. On the other hand,
+model-based learners do not need to store the training instances for making predictions.
+
+The standard Euclidean metric is commonly employed. Once the nearest neighbors have been determined, two
+approaches, namely uniform and distance-based, can be employed to decide weights assigned to each neighbor which impacts the neighbor’s contribution in prediction. In uniform
+weighting, all k neighbors are treated equally while, in distance-based weighting, each of the k neighbors is weighted by the inverse of their distance from the test sample so that closer
+neighbors will have greater contributions.
+
+For predictions, kNN needs to compute the distance of test samples from all the training samples. For large training sets, this computation can become expensive. However,
+specialized techniques, such as KDTree and BallTree, have been developed to speed up the extraction of neighboring points without impacting prediction accuracies. These techniques
+utilize the structure in data to avoid computing distances from all training samples. The NearestNeighbors implementation in scikit-learn automatically selects the algorithm best
+suited to the problem at hand. The KNeighborsRegressor and KNeighborsClassifier modules are provided by scikit-learn for regression and classification, respectively.
+
+kNN method is often employed for equipment condition monitoring For process-level monitoring, kNN classification can be used to classify process abnormalities
+into distinct fault classes if sufficient historical faulty samples are available. 
+
+Combining ML Techniques: An area where this can prove very useful is when you need to combine the different ML techniques together to leverage their respective strengths. 
+A common combination scheme is to use PCA for feature extraction and any then apply other method on the extracted features.
+
+Artificial neural networks (ANNs) are nonlinear empirical models which can capture complex relationships between input-output
+variables via supervised learning or recognize data patterns via unsupervised learning.
+
+FFNNs, RNNs, and CNNs are the most common architectures.
+
+Deep learning simply refers to machine learning with deep neural networks (DNNs) which are ANNs
+with two or more hidden layers (see Figure 11.2). While shallow networks, with large number of neurons, can theoretically model any complex function, deep networks need much fewer
+model parameters and hence, are theoretically faster to train. Moreover, DNNs enable bypassing manual feature engineering; the first few hidden layers implicitly generate features
+that are utilized by downstream layers.
+
+For classical ML implementations, we utilized the packages available in Scikit-learn. For ANNs, other specialized libraries are commonly used which make it very easy to build neural net models. 
+TensorFlow (by Google) and PyTorch (by Facebook) are the two most popular deep learning frameworks. These frameworks provide specialized algorithms for efficient training of ANNs.
+
+PSE community who are now exploring ‘daring’ applications of ANNs such as replacing model predictive controllers (MPCs) with ANNs by ‘learning’ MPC’s
+optimal policies+.
+
+Activation functions (AFs) are what impart non-linear capabilities to neural nets.
+
+The choice of activation function in the output layer depends on the task at hand. For regression problems, no activation function (equivalently, g(z) = z linear function) is used.
+Softmax is an exponential function that generates normalized activations so that they sum up to 1. In ANN world, the pre-activations (𝒛𝒋) that are fed as inputs to the softmax function as also
+called logits. 
+
+Gradient descent optimization
+Once the cost/objective function (J(θ)) has been defined, the model parameters (θ) are optimized to minimize the cost function. The most common optimization approach used by
+deep learning libraries is gradient descent where model parameters are estimated in multiple iterations, and in each iteration parameters are updated in the direction of steepest descent
+(negative of the gradient of J(θ) with respect to θ). The expression below shows the update mechanism for the ith model parameter.
+
+A drawback of the classical (or vanilla) gradient descent is that the optimizer is slow and often gets stuck in local minima. As a remedy, several variations of the vanilla approach have been
+devised which have been shown to provide better performance. These variations include Momentum optimization, Nesterov Accelerated Gradient, AdaGrad, RMSProp, and Adam
+optimization. Among these, Adam (adaptive moment estimation) optimization, which combines the ideas of momentum optimization and RMSProp, is recommended as the default
+optimizer to use.
+
+In vanilla gradient descent, the entire training dataset is used for computing the gradient in each iteration. Due to this, for large datasets, each iteration can become very slow. This
+approach, aka batch gradient descent, is also not suitable for updating models online, i.e., updating models quickly with new data samples. Mini-batch gradient descent (MGD) and
+stochastic gradient descent (SGD) are two alternative approaches.
+
+Regularization: regularization is a way to constraint model’s weight parameters to avoid overfitting (large gap between training and validation accuracies). As one of the best
+practices, you should always employ regularization for your ANN model fitting.
+
+For deep networks, another form of regularization is very popular and is called ‘dropout’. In this strategy, in every training iteration, some neurons are ‘dropped out’, i.e., their activations
+are not computed in forward pass and weight updates are not performed. 
+
+Initialization
+Normalization
+
+FFNN Modeling Guidelines
+ANN modeling is a very broad topic and with the plethora of tutorials on ANN modeling available out there, it is easy to get overwhelmed. However, we have seen in this chapter that
+ANNs are not as daunting as it may seem if we pay careful attention to a few key concepts. If you are looking for some quick guidelines on how to setup the ANN hyperparameters for
+process systems modeling, then the following suggestions will serve you well.
+• Number of hidden layers: 1 for simple systems, 2 or 3 for complex systems/tasks
+• Activation function: ReLU
+• Initialization scheme: He initialization
+• Optimizer: Adam
+• Regularization: L1 or L2 kernel regularization
+• Learning rate schedule: Not needed with Adam optimizer
+• Number of epochs: Use a reasonably large value with early stopping
+• Mini-batch size: 32
+You will be lucky if you end up finding a good ANN model with the default settings in the very
+first attempt. Often the following adjustments may need to be made.
+• If validation accuracy is much lower than training accuracy, then increase regularization
+penalty
+• If optimizer is getting stuck in local minima, then adjust Adam’s initial learning rate. If it
+does not help, then try adding more neurons or hidden layers
+• If loss vs epoch curve is very noisy, then increase mini-batch size
+
+Recurrent neural networks
+In FFNNs, there is an implicit assumption of static relationships between network inputs and outputs. There is no notion of
+process dynamics or temporal order. However, sometimes you will encounter situations where model output depends on not just the current input but on past inputs as well.
+
+In essence, RNNs are FFNNs with ‘memory’.
+
+For process systems, RNNs have been successfully used for system identification, fault detection & classification, time series forecasting, and predictive maintenance of industrial
+equipment. Outside of process industry, RNNs are employed, among others, for natural language processing (speech recognition, text autofill, language translation, sentiment
+analysis, etc.), music composition, and stock market forecasting.
+
+Recurrent neural networks (RNNs) are ANNs for dealing with sequential data, where the order of occurrence of data holds significance. For example, in a production plant, consistently
+increasing temperature measurements may indicate one kind of process fault while consistently decreasing measurements may indicate another fault type. There is no efficient
+mechanism to specify this temporal order of data in a FFNN. RNNs accomplish this by processing elements of a sequence recurrently and storing a hidden state that summarizes
+the past information during the processing. The basic unit in a RNN is called a RNN cell which simply contains a layer of neurons. ‘recurrent’ mechanism leads
+to efficient capturing of temporal patterns in data.
+
+Two other popular architecture, namely, vector to sequence RNN and delayed sequence to sequence RNN. In the former scheme, a single input returns a
+sequence. A real-life example could be dynamic process response due to a step change in process inputs. The delayed sequence to sequence network (also called encoder-decoder
+network) is also a many-to-many network, however, here, the output sequence is delayed. This scheme is utilized if each step of output sequence depends on the entire input sequence.
+Encoder-decoder scheme is often utilized for language translation because initial words of the translation can be influenced by final words of the sentence being translated.
+
+
+The task of building mathematical models of dynamical processes using input and output data is referred to as system identification (SI). RNNs are aptly suited for SI as they are designed
+to capture dynamic relationships.
+
+ARX (autoregressive with exogenous variables)model.
+It is now a good time for a quick comparison between FFNN and RNN modeling. If we had built a FFNN model with past power and temperature values as additional input variables,
+then we would have ended up with 140-dimensional input variable. Assuming we use a hidden layer with only 25 neurons followed by a single output neuron, we would have ended up with
+more than 3500 model parameters – 25% more than that used by our RNN model. This rough thought-experiment shows how RNNs end up with better parameter efficiency for modeling
+dynamic systems. And by now, you would know that lower number of model parameters generally implies lower chances of over-fitting and better model training. Therefore, for
+dynamic systems, RNNs should be the preferred model choice.
+
+Stacked/Deep RNN
+
+Reinforcement learning: RL is the branch of ML wherein an agent repeatedly interacts with its environment to learn the
+best way to accomplish a task or the optimal action policy.
+
+In process industry, although PID and MPC controllers are well-established, their shortcomings are well-known. While PID controllers perform unsatisfactorily for complex
+nonlinear systems, MPCs solve optimization problems using process models which makes online action computation infeasible for large-scale nonlinear systems. Moreover, both these
+controllers suffer performance degradation issues (due to changing process conditions, process drift) over time, necessitating regular maintenance. Controller maintenance entails
+re-identification of process models which can be time and resource intensive and may require interference to normal plant operations for training data collection.
+
+Model-free vs model-based RL. Model-free RL doesn’t use any environment/plant model during training and learns its policy based solely on its interactions with real environment.
+Model-based RL, on the other hand, uses a model either for simulating the environment or assisting the learning algorithm.
+
+Q-learning refers to the RL algorithms designed for estimating the 𝑸∗(𝒔, 𝒂) values. Once the optimal value function is available, an optimal policy can be framed as simply picking the
+action corresponding to the highest value for the current state.
+
+Q-learning belongs to the category of off-policy RL algorithms. In such algorithms the target policy being learnt (optimal policy) is different from the policy being
+executed or used to select actions (such as 𝜺-greedy policy) during training. The executed policy is also called behavior policy. For on-policy RL algorithms,
+behavior policy equals target policy.
+
+Deep Q learning, Deep deterministic Policy gradient (DDPG)
 

@@ -202,4 +202,55 @@ SVMs are in a league of their own and are well-suited for industrial processes w
 elegant mathematical background, just a few hyperparameters, excellent generalization capabilities, and guaranteed unique global optimum, SVMs are among the best ML
 algorithms.
 
+Finding Groups in Process Data: Clustering & Mixture Modeling
+
+The Conventional PCA-based monitoring, on the other hand, would fail to identify the outlier. And in the correlation between the variables is different in the two clusters. From soft
+sensing perspective, it would make sense to build separate models for the two clusters. The Conventional PLS model would give inaccurate results.
+
+Clustering algorithms:
+• Centroid-based algorithms: In these algorithms, the similarity between data-points is quantified by the distance of the data-points from the centroid of the clusters. K-Means,
+Fuzzy C-Means models belong to this category.
+• Distribution-based algorithms: Here, similarity between data-points is quantified by computing the probabilities of the data-points belonging to the same underlying
+distribution. Gaussian mixture models (GMMs) are popular in this category.
+• Density-based algorithms: Density models find areas of high density of data in the multivariable space and assign data-points to different clusters/regions. DBSCAN and
+OPTICS are popular examples of density models.
+• Connectivity-based algorithms: In these models, similarity is quantified by directly measuring the distance between the data-points. Hierarchical clustering models belong to
+this category.
+
+ Performing PCA serves other purposes as well. We will see later that expectation-maximization (EM) algorithm is employed to estimate cluster
+parameters in K-Means and GMM models. High dimensionality implies high number of parameters to be estimated which increases possibility of EM converging to locally optimum
+results and correlated variables causes EM convergence issues. PCA helps to overcome these two problems simultaneously.
+
+K-means: he cluster assignment of the data points is determined such that the following sum of squared errors, also called cluster inertia, is
+minimized.
+
+ For high-dimensional data, it may not always be possible to project most of the data variability onto 2 or 3 PCs and thus it becomes difficult to judge the goodness of clustering or visualize
+the clusters using 2D or 3D plots.Silhouette plots can be used to visualize and quantify cluster quality. Note that silhouette analysis is not specific to k-means and can
+be applied to study any clustering result. Silhouette coefficient or value of a data-point ranges from -1 to 1 and is a measure of how far
+the data-point is from data-points in neighboring cluster as compared to data-points in the same cluster. A value of 1 indicates that the data-point is far away from the neighboring
+cluster and values close to 0 indicate that the data-point is close to the boundary between the two clusters. Negative values indicate wrong cluster assignment.
+
+DBSCAN, a Density-based algorithm, can easily handle irregularly shaped data distributions.
+The ability to deal with arbitrarily shaped data, robustness to noise and outliers make DBSCAN well-suited for clustering process data.
+
+DBSCAN works by grouping together data-points that form regions of high data densities. Specifically, each data-point is classified into one of the following 3 categories:
+• A core point if there are more than a specified number (minPts) of data-points within a
+specified distance (𝜺)
+• A border point if less than minPts data-points lie within its 𝜺 neighborhood, but the
+data-point itself lies within the 𝜺 neighborhood of another core point
+• A noise point if it isn’t classified as either core or border point
+
+A common disadvantage of both k-means and DBSCAN is that the data-points are ‘hard-clustered’ (each data point assigned to exactly one cluster). For
+example, consider the data-points categorized as noise-points in Figure 8.10. Although these points are far away from cluster center, they may still correspond to normal operating
+conditions representing low-likelihood instances. Throwing away these noise points can lead to loss of crucial information and may result in improperly set monitoring thresholds.
+Additionally, in some cases, hard clustering may not be obvious if a data-point lies equidistant from different clusters. Soft-clustering algorithms can be used to solve these problems as
+these algorithms provide some measure of association of data-points with different clusters. We will study one such popular algorithm, gaussian mixture model.
+
+Hard clustering = each point in only one group. Soft clustering = each point can belong to multiple groups with different probabilities.
+
+Determining the number of clusters
+One of the limitations with EM algorithm for GMM modeling is that the number of gaussian components is assumed to be known beforehand. This may not always be true. To overcome this,
+we can use a method similar to elbow method that we used for k-means. While in k- means, we plotted SSEs for different number of clusters, in GMM we will utilize the Bayesian
+Information Criterion (BIC) metric (introduced in Chapter 3). Unlike SSEs, BICs increase after a while and optimal gaussian components is the value that minimizes BIC.
+
 
